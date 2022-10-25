@@ -1,7 +1,7 @@
 import argparse
 import shutil
 from pathlib import Path
-from Home_Work_6.normalize import normalize
+from normalize import normalize
 
 parser = argparse.ArgumentParser(description="Sorting folder")
 parser.add_argument("--source", "-s", required=True, help="Source folder")
@@ -37,6 +37,7 @@ def read_folder(path: Path):
 
 
 def replace_file(file: Path):
+    output_folder = Path(source)
     ext = file.suffix[1:]
     if ext in file_type.get('audio'):
         new_path = output_folder / 'audio'
@@ -98,21 +99,25 @@ def delete_folder(folder: Path):
         print(f'Помилка видалення папки {folder}')
 
 
-sort_folder = Path(source)
-output_folder = sort_folder
-read_folder(Path(source))
+def start_program(source):
+    sort_folder = Path(source)
+    read_folder(Path(source))
 
-print(f'Сортуємо папку: {sort_folder}')
+    print(f'Сортуємо папку: {sort_folder}')
 
-for folder in folders[::-1]:
-    delete_folder(folder)
+    for folder in folders[::-1]:
+        delete_folder(folder)
 
-print(f'Аудіо файли: {audio}')
-print(f'Відео файли: {video}')
-print(f'Зображення: {images}')
-print(f'Документи: {documents}')
-print(f'Архіви: {archives}')
-print(f'Розширення файлів: {extension}')
-print(f'Невідомі розширення файлів: {other_extension}')
+    print(f'Аудіо файли: {audio}')
+    print(f'Відео файли: {video}')
+    print(f'Зображення: {images}')
+    print(f'Документи: {documents}')
+    print(f'Архіви: {archives}')
+    print(f'Розширення файлів: {extension}')
+    print(f'Невідомі розширення файлів: {other_extension}')
 
-print(f'Сортування папки: {sort_folder} завершено!')
+    print(f'Сортування папки: {sort_folder} завершено!')
+
+
+if __name__ == '__main__':
+    start_program(Path(source))
