@@ -13,7 +13,8 @@ file_type = {
     'video': ('avi', 'mp4', 'MOV', 'mkv'),
     'images': ('jpeg', 'png', 'jpg', 'svg'),
     'archives': ('zip', 'gz', 'tar'),
-    'documents': ('doc', 'docx', 'txt', 'pdf', 'xlsx', 'pptx')
+    'documents': ('doc', 'docx', 'txt', 'pdf', 'xlsx', 'pptx'),
+    'other_files': ()
 }
 
 folders = []
@@ -29,7 +30,7 @@ other_extension = []
 def read_folder(path: Path):
     for el in path.iterdir():
         if el.is_dir():
-            if el.name not in file_type.keys() or 'other_files':
+            if el.name not in file_type.keys():
                 folders.append(el)
                 read_folder(el)
         else:
