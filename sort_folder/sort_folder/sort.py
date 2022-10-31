@@ -1,7 +1,7 @@
 import argparse
 import shutil
 from pathlib import Path
-from normalize import normalize
+from sort_folder import normalize
 
 parser = argparse.ArgumentParser(description="Sorting folder")
 parser.add_argument("--source", "-s", required=True, help="Source folder")
